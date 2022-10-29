@@ -1,6 +1,8 @@
+
 from django.db import models
 
 # Create your models here.
+
 
 
 class Artiste(models.Model):
@@ -8,20 +10,29 @@ class Artiste(models.Model):
     last_name=models.CharField(max_length=30)
     age=models.IntegerField()
 
+    def __str__(self):
+        return self.first_name 
 
-class Song(models.Model): 
-    artiste=models.ForeignKey(Artiste, on_delete=models.CASCADE)
-    artiste_id=models.SmallIntegerField(primary_key=True)
+
+class Song(models.Model):
+    artiste_id=models.ForeignKey(Artiste, on_delete=models.CASCADE)
     title=models.CharField(max_length=100)
     date_released=models.DateField('Date Released')
     likes=models.IntegerField()
-    # artiste_id=models.AutoField(unique=True)
-   
+    
+    def __str__(self):
+        return self.title
+ 
 
 
 
 class Lyric(models.Model):
-    song=models.ForeignKey(Song, on_delete=models.CASCADE)
+    song_id=models.ForeignKey(Song, on_delete=models.CASCADE)
     content=models.TextField(max_length=250)
-    # song_id=models.IntegerField(primary_key=True)
 
+    def __str__(self):
+        return self.song_id
+
+
+
+   
