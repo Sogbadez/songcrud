@@ -31,7 +31,7 @@ class Lyric(models.Model):
     content=models.TextField(max_length=250)
 
     def __str__(self):
-        return self.song_id
+        return self.content[:50]
 
 
 
